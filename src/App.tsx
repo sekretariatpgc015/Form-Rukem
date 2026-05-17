@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4 font-sans print:bg-white print:py-0 print:px-0">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl p-8 md:p-12 print:shadow-none print:p-0">
+      <div className="max-w-4xl mx-auto bg-white shadow-xl p-8 md:p-12 print:shadow-none print:p-0 print:max-w-none">
         
         {/* Header Section */}
         <div className="flex justify-between items-center border-b-[3px] border-double border-blue-900 pb-4 mb-8 pt-4">
@@ -253,10 +253,10 @@ export default function App() {
            </div>
 
           {/* Signatures */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-8 break-inside-avoid">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-8 pt-8 print:pt-4 break-inside-avoid">
             
-            <div className="flex flex-col items-start pt-6">
-              <div className="flex items-center gap-2 mb-20 w-full max-w-[200px]">
+            <div className="flex flex-col items-start pt-6 print:pt-0">
+              <div className="flex items-center gap-2 mb-20 print:mb-16 w-full max-w-[200px]">
                 <span>Ketua RT.</span>
                 <input 
                   type="text" 
@@ -270,7 +270,7 @@ export default function App() {
             </div>
 
             <div className="flex flex-col items-start md:items-end w-full">
-              <div className="mb-20 w-fit text-center">
+              <div className="mb-20 print:mb-16 w-fit text-center">
                 <p>Bekasi, ............................................</p>
                 <p className="mt-1 text-center">Kepala Keluarga</p>
               </div>
@@ -279,15 +279,15 @@ export default function App() {
 
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-12 w-full">
-            <p className="mb-20">Mengetahui,</p>
-            <div className="flex flex-col md:flex-row justify-between w-full md:px-12 gap-20">
+          <div className="flex flex-col items-center justify-center mt-12 print:mt-8 w-full break-inside-avoid">
+            <p className="mb-20 print:mb-10">Mengetahui,</p>
+            <div className="flex flex-col md:flex-row justify-between w-full md:px-12 gap-20 print:gap-12">
                <div className="flex flex-col items-center">
-                  <p className="mb-24">Ketua Rukun Kematian</p>
+                  <p className="mb-24 print:mb-16">Ketua Rukun Kematian</p>
                   <p className="font-bold underline tracking-widest uppercase">USMAN</p>
                </div>
                <div className="flex flex-col items-center">
-                  <p className="mb-24">Ketua RW. 015</p>
+                  <p className="mb-24 print:mb-16">Ketua RW. 015</p>
                   <p className="font-bold underline tracking-widest uppercase">WARDIYANTO</p>
                </div>
             </div>
