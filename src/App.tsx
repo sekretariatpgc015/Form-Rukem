@@ -101,7 +101,7 @@ export default function App() {
         </div>
 
         {/* Form Body */}
-        <div className="space-y-6 print:space-y-3 print:[&_label]:text-[14px] print:[&_input]:text-[14px]">
+        <div className="space-y-6 print:space-y-2 print:[&_label]:text-[13px] print:[&_input]:text-[13px] print:text-[13px]">
           
           {/* Kepala Keluarga */}
           <div className="flex flex-col md:flex-row md:items-start gap-2">
@@ -123,7 +123,7 @@ export default function App() {
             <label className="font-medium flex justify-between">
               <span>2. Anggota Keluarga (Sesuai Kartu Keluarga)<span className="hidden md:inline ml-2">:</span></span>
             </label>
-            <div className="pl-4 md:pl-8 space-y-3 mt-2">
+            <div className="pl-4 md:pl-8 space-y-3 mt-2 print:mt-1 print:space-y-1">
               {formData.anggotaKeluarga.map((member, index) => (
                 <div key={index} className="flex flex-col md:flex-row items-center gap-2 md:gap-4 justify-between w-full">
                   <span className="hidden md:inline text-gray-500">•</span>
@@ -175,13 +175,13 @@ export default function App() {
           </div>
 
           {/* Alamat */}
-           <div className="flex flex-col gap-2 pt-2">
+           <div className="flex flex-col gap-2 pt-2 print:pt-0">
             <label className="font-medium">
               3. Alamat Tinggal Sekarang
             </label>
             <div className="pl-4 md:pl-5">
               <textarea 
-                className="w-full border-b-[1.5px] border-dashed border-gray-400 focus:border-blue-500 outline-none px-2 py-1 bg-transparent resize-none leading-loose"
+                className="w-full border-b-[1.5px] border-dashed border-gray-400 focus:border-blue-500 outline-none px-2 py-1 bg-transparent resize-none leading-loose print:leading-normal print:py-0 print:min-h-[40px] print:text-[13px]"
                 rows={2}
                 value={formData.alamat}
                 onChange={(e) => setFormData({...formData, alamat: e.target.value})}
@@ -191,7 +191,7 @@ export default function App() {
           </div>
 
           {/* No Hp, Agama, Status */}
-          <div className="space-y-4 pt-2">
+          <div className="space-y-4 pt-2 print:space-y-1 print:pt-1">
              <div className="flex flex-col md:flex-row md:items-start gap-2">
               <label className="md:w-64 font-medium flex justify-between">
                 <span>4. No. Handphone</span>
@@ -249,11 +249,11 @@ export default function App() {
           </div>
 
           {/* Biaya Administrasi */}
-          <div className="flex flex-col gap-2 pt-2">
+          <div className="flex flex-col gap-2 pt-2 print:pt-1">
              <label className="font-medium">
               7. Biaya Administrasi
             </label>
-            <div className="pl-4 md:pl-8 space-y-2">
+            <div className="pl-4 md:pl-8 space-y-2 print:space-y-1">
               <div className="flex flex-col md:flex-row gap-2">
                 <span className="md:w-48">a. Uang Pendaftaran</span>
                 <span className="hidden md:inline">:</span>
@@ -273,14 +273,14 @@ export default function App() {
           </div>
 
           {/* Info Text */}
-          <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200 mt-6 print:mt-3 print:p-2">
-            <p className="font-bold text-center text-sm md:text-base print:text-sm">
+          <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200 mt-6 print:mt-1 print:p-2">
+            <p className="font-bold text-center text-sm md:text-base print:text-[13px] print:leading-snug">
               (Uang tersebut dibayarkan saat melapor ke Pengurus RT setempat dengan melampirkan foto kopi KTP dan Kartu Keluarga)
             </p>
           </div>
 
           {/* Agreement */}
-           <div className="mt-8 pt-6 border-t border-gray-200 print:mt-4 print:pt-4">
+           <div className="mt-8 pt-6 border-t border-gray-200 print:mt-2 print:pt-2">
              <label className="flex items-start gap-3 cursor-pointer group">
                <div className="pt-1">
                   <input 
@@ -290,17 +290,17 @@ export default function App() {
                     onChange={(e) => setFormData({...formData, setuju: e.target.checked})}
                   />
                </div>
-               <span className="text-base text-gray-800 leading-relaxed group-hover:text-black print:text-[14px]">
+               <span className="text-base text-gray-800 leading-relaxed group-hover:text-black print:text-[12px] print:leading-snug">
                  Saya menyatakan bersedia untuk mematuhi peraturan yang berlaku dalam KETENTUAN UMUM Rukun Kematian RW. 015.
                </span>
              </label>
            </div>
 
           {/* Signatures */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-4 pt-8 print:pt-2 break-inside-avoid">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-2 pt-8 print:pt-0 break-inside-avoid print:text-[13px]">
             
             <div className="flex flex-col items-start pt-6 print:pt-0">
-              <div className="flex items-center gap-2 mb-20 print:mb-8 w-full max-w-[200px]">
+              <div className="flex items-center gap-2 mb-20 print:mb-6 w-full max-w-[200px]">
                 <span>Ketua RT.</span>
                 <input 
                   type="text" 
@@ -314,7 +314,7 @@ export default function App() {
             </div>
 
             <div className="flex flex-col items-start md:items-end w-full">
-              <div className="mb-20 print:mb-8 w-fit text-center">
+              <div className="mb-20 print:mb-6 w-fit text-center">
                 <p>Bekasi, ............................................</p>
                 <p className="mt-1 text-center">Kepala Keluarga</p>
               </div>
@@ -323,16 +323,16 @@ export default function App() {
 
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-12 print:mt-4 w-full break-inside-avoid">
-            <p className="mb-20 print:mb-6">Mengetahui,</p>
+          <div className="flex flex-col items-center justify-center mt-12 print:mt-2 w-full break-inside-avoid print:text-[13px]">
+            <p className="mb-20 print:mb-2">Mengetahui,</p>
             <div className="flex flex-col md:flex-row justify-between w-full md:px-12 gap-20 print:gap-12">
                <div className="flex flex-col items-center">
-                  <p className="mb-24 print:mb-8">Ketua Rukun Kematian</p>
-                  <p className="font-bold underline tracking-widest uppercase print:text-[15px]">USMAN</p>
+                  <p className="mb-24 print:mb-6">Ketua Rukun Kematian</p>
+                  <p className="font-bold underline tracking-widest uppercase print:text-[14px]">USMAN</p>
                </div>
                <div className="flex flex-col items-center">
-                  <p className="mb-24 print:mb-8">Ketua RW. 015</p>
-                  <p className="font-bold underline tracking-widest uppercase print:text-[15px]">WARDIYANTO</p>
+                  <p className="mb-24 print:mb-6">Ketua RW. 015</p>
+                  <p className="font-bold underline tracking-widest uppercase print:text-[14px]">WARDIYANTO</p>
                </div>
             </div>
           </div>
