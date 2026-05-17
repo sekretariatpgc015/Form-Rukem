@@ -300,7 +300,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-2 pt-8 print:pt-0 break-inside-avoid print:text-[11px] print:gap-12 print:grid-cols-2">
             
             <div className="flex flex-col items-start pt-6 print:pt-0">
-              <div className="flex items-center gap-2 mb-20 print:mb-10 w-full max-w-[200px]">
+              <div className="flex items-center gap-2 mb-24 print:mb-12 w-full max-w-[200px]">
                 <span>Ketua RT.</span>
                 <input 
                   type="text" 
@@ -314,7 +314,7 @@ export default function App() {
             </div>
 
             <div className="flex flex-col items-start md:items-end print:items-end w-full">
-              <div className="mb-20 print:mb-10 w-fit text-center">
+              <div className="mb-24 print:mb-12 w-fit text-center">
                 <p>Bekasi, ............................................</p>
                 <p className="mt-1 text-center">Kepala Keluarga</p>
               </div>
