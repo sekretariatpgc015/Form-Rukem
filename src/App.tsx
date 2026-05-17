@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AlertCircle, X } from 'lucide-react';
 
 interface FamilyMember {
   name: string;
@@ -23,41 +24,84 @@ export default function App() {
     rt: ''
   });
 
+  const [showPrintWarning, setShowPrintWarning] = useState(false);
+
   const handleMemberChange = (index: number, field: keyof FamilyMember, value: string) => {
     const newMembers = [...formData.anggotaKeluarga];
     newMembers[index] = { ...newMembers[index], [field]: value };
     setFormData({ ...formData, anggotaKeluarga: newMembers });
   };
 
+  const handlePrint = () => {
+    // Check if app is running inside an iframe
+    if (window.self !== window.top) {
+      setShowPrintWarning(true);
+    } else {
+      window.print();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4 font-sans print:bg-white print:py-0 print:px-0">
+      
+      {/* Print Warning Modal */}
+      {showPrintWarning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 print:hidden">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative">
+            <button 
+              onClick={() => setShowPrintWarning(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex flex-col items-center text-center">
+              <AlertCircle className="w-12 h-12 text-yellow-500 mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Buka di Tab Baru</h3>
+              <p className="text-gray-600 mb-6">
+                Sistem pratinjau (preview) cetak diblokir saat berada di dalam penyunting pratinjau ini.
+                <br /><br />
+                Silakan buka aplikasi di <strong>tab baru</strong> dengan mengklik ikon panah (buka di tab baru) di pojok kanan atas, kemudian tekan kembali tombol Cetak Formulir.
+              </p>
+              <button
+                 onClick={() => {
+                  setShowPrintWarning(false);
+                 }}
+                 className="w-full bg-blue-900 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-800 transition-colors"
+              >
+                Mengerti
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-4xl mx-auto bg-white shadow-xl p-8 md:p-12 print:shadow-none print:p-0 print:max-w-none">
         
         {/* Header Section */}
-        <div className="flex justify-between items-center border-b-[3px] border-double border-blue-900 pb-4 mb-8 pt-4">
+        <div className="flex justify-between items-center border-b-[3px] border-double border-blue-900 pb-4 mb-8 pt-4 print:pb-2 print:mb-4 print:pt-0">
           <div className="w-24 md:w-32 flex-shrink-0 flex items-center justify-center pl-4 md:pl-0">
-            <img src="https://drive.google.com/thumbnail?id=17G7evIeHShfqn7aSm7L1mfgjlb1hStya" alt="Logo RW" className="w-full max-h-20 md:max-h-28 object-contain" referrerPolicy="no-referrer" />
+            <img src="https://drive.google.com/thumbnail?id=17G7evIeHShfqn7aSm7L1mfgjlb1hStya" alt="Logo RW" className="w-full max-h-20 md:max-h-28 print:max-h-20 object-contain" referrerPolicy="no-referrer" />
           </div>
           
           <div className="flex-1 text-center px-4">
-            <h1 className="text-2xl md:text-3xl font-bold text-blue-900 uppercase tracking-wide">Rukun Kematian</h1>
-            <h2 className="text-[17px] md:text-xl font-bold text-blue-900 mb-1">PERUM. PESONA GADING CIBITUNG RW. 015</h2>
-            <p className="text-sm md:text-[15px] text-blue-900">Desa Wanajaya, Kec. Cibitung, Kab. Bekasi 17520</p>
-            <p className="text-sm md:text-[15px] text-blue-900 mt-1">Telp. 0812.4754.1267 - 0878.0444.6070</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-blue-900 uppercase tracking-wide print:text-2xl">Rukun Kematian</h1>
+            <h2 className="text-[17px] md:text-xl font-bold text-blue-900 mb-1 print:text-[16px] print:mb-0">PERUM. PESONA GADING CIBITUNG RW. 015</h2>
+            <p className="text-sm md:text-[15px] text-blue-900 print:text-[13px]">Desa Wanajaya, Kec. Cibitung, Kab. Bekasi 17520</p>
+            <p className="text-sm md:text-[15px] text-blue-900 mt-1 print:text-[13px] print:mt-0">Telp. 0812.4754.1267 - 0878.0444.6070</p>
           </div>
 
           <div className="w-24 md:w-32 flex-shrink-0 flex items-center justify-center pr-4 md:pr-0">
-            <img src="https://drive.google.com/thumbnail?id=1F-lVYFP7r2CD24xYJCAGVmOs0Ta6NyRJ" alt="Logo Rukun Kematian" className="w-full max-h-20 md:max-h-28 object-contain" referrerPolicy="no-referrer" />
+            <img src="https://drive.google.com/thumbnail?id=1F-lVYFP7r2CD24xYJCAGVmOs0Ta6NyRJ" alt="Logo Rukun Kematian" className="w-full max-h-20 md:max-h-28 print:max-h-20 object-contain" referrerPolicy="no-referrer" />
           </div>
         </div>
 
         {/* Form Title */}
-        <div className="text-center mb-8">
-          <h3 className="text-xl font-bold uppercase underline">Form Data Anggota Baru</h3>
+        <div className="text-center mb-8 print:mb-4">
+          <h3 className="text-xl font-bold uppercase underline print:text-lg">Form Data Anggota Baru</h3>
         </div>
 
         {/* Form Body */}
-        <div className="space-y-6">
+        <div className="space-y-6 print:space-y-3 print:[&_label]:text-[14px] print:[&_input]:text-[14px]">
           
           {/* Kepala Keluarga */}
           <div className="flex flex-col md:flex-row md:items-start gap-2">
@@ -229,14 +273,14 @@ export default function App() {
           </div>
 
           {/* Info Text */}
-          <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200 mt-6">
-            <p className="font-bold text-center text-sm md:text-base">
+          <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200 mt-6 print:mt-3 print:p-2">
+            <p className="font-bold text-center text-sm md:text-base print:text-sm">
               (Uang tersebut dibayarkan saat melapor ke Pengurus RT setempat dengan melampirkan foto kopi KTP dan Kartu Keluarga)
             </p>
           </div>
 
           {/* Agreement */}
-           <div className="mt-8 pt-6 border-t border-gray-200">
+           <div className="mt-8 pt-6 border-t border-gray-200 print:mt-4 print:pt-4">
              <label className="flex items-start gap-3 cursor-pointer group">
                <div className="pt-1">
                   <input 
@@ -246,17 +290,17 @@ export default function App() {
                     onChange={(e) => setFormData({...formData, setuju: e.target.checked})}
                   />
                </div>
-               <span className="text-base text-gray-800 leading-relaxed group-hover:text-black">
+               <span className="text-base text-gray-800 leading-relaxed group-hover:text-black print:text-[14px]">
                  Saya menyatakan bersedia untuk mematuhi peraturan yang berlaku dalam KETENTUAN UMUM Rukun Kematian RW. 015.
                </span>
              </label>
            </div>
 
           {/* Signatures */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-8 pt-8 print:pt-4 break-inside-avoid">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 print:mt-4 pt-8 print:pt-2 break-inside-avoid">
             
             <div className="flex flex-col items-start pt-6 print:pt-0">
-              <div className="flex items-center gap-2 mb-20 print:mb-16 w-full max-w-[200px]">
+              <div className="flex items-center gap-2 mb-20 print:mb-8 w-full max-w-[200px]">
                 <span>Ketua RT.</span>
                 <input 
                   type="text" 
@@ -270,25 +314,25 @@ export default function App() {
             </div>
 
             <div className="flex flex-col items-start md:items-end w-full">
-              <div className="mb-20 print:mb-16 w-fit text-center">
+              <div className="mb-20 print:mb-8 w-fit text-center">
                 <p>Bekasi, ............................................</p>
                 <p className="mt-1 text-center">Kepala Keluarga</p>
               </div>
-              <div className="w-full max-w-[250px] border-b border-black mb-1"></div>
+              <div className="w-full max-w-[250px] border-b border-black mb-1 print:max-w-[200px]"></div>
             </div>
 
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-12 print:mt-8 w-full break-inside-avoid">
-            <p className="mb-20 print:mb-10">Mengetahui,</p>
+          <div className="flex flex-col items-center justify-center mt-12 print:mt-4 w-full break-inside-avoid">
+            <p className="mb-20 print:mb-6">Mengetahui,</p>
             <div className="flex flex-col md:flex-row justify-between w-full md:px-12 gap-20 print:gap-12">
                <div className="flex flex-col items-center">
-                  <p className="mb-24 print:mb-16">Ketua Rukun Kematian</p>
-                  <p className="font-bold underline tracking-widest uppercase">USMAN</p>
+                  <p className="mb-24 print:mb-8">Ketua Rukun Kematian</p>
+                  <p className="font-bold underline tracking-widest uppercase print:text-[15px]">USMAN</p>
                </div>
                <div className="flex flex-col items-center">
-                  <p className="mb-24 print:mb-16">Ketua RW. 015</p>
-                  <p className="font-bold underline tracking-widest uppercase">WARDIYANTO</p>
+                  <p className="mb-24 print:mb-8">Ketua RW. 015</p>
+                  <p className="font-bold underline tracking-widest uppercase print:text-[15px]">WARDIYANTO</p>
                </div>
             </div>
           </div>
@@ -298,7 +342,7 @@ export default function App() {
         {/* Print Button (Hidden in print) */}
         <div className="mt-16 flex justify-center print:hidden">
           <button 
-            onClick={() => window.print()}
+            onClick={handlePrint}
             className="bg-blue-900 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all flex items-center gap-2"
           >
             Cetak Formulir
