@@ -1,0 +1,8 @@
+{
+  "name": "Form Pendaftaran Rukun Kematian",
+  "description": "Formulir pendaftaran digital untuk anggota baru Rukun Kematian RW 015.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
